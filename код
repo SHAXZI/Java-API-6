@@ -1,0 +1,28 @@
+def add_contact(phonebook, name, phone):
+    """Добавляет контакт в телефонную книгу."""
+    if name in phonebook:
+        phonebook[name].add(phone)
+    else:
+        phonebook[name] = {phone}
+
+def print_phonebook(phonebook):
+    """Выводит телефонную книгу, отсортированную по убыванию количества телефонов."""
+    sorted_phonebook = sorted(phonebook.items(), key=lambda x: len(x[1]), reverse=True)
+    
+    for name, phones in sorted_phonebook:
+        print(f"{name}: {', '.join(phones)}")
+
+# Пример использования
+if __name__ == "__main__":
+    phonebook = {}
+
+    # Добавляем контакты
+    add_contact(phonebook, "Alice", "555-1234")
+    add_contact(phonebook, "Bob", "555-2345")
+    add_contact(phonebook, "Alice", "555-5678")
+    add_contact(phonebook, "Charlie", "555-3456")
+    add_contact(phonebook, "Bob", "555-6789")
+    add_contact(phonebook, "Alice", "555-1234")  # Повторяющийся номер
+
+    # Вывод телефонной книги
+    print_phonebook(phonebook)
